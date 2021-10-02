@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de idade</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Calculadora de idade</h1>
+    <div id="box">
+        <p>Ano de nascimento:
+            <input type="number" name="idade" id="idade" min="0">
+        </p>
+        <p> Sexo:
+            <input type="radio" name="radsex" id="mas">
+            <label for="mas">Masculino</label>
+            <input type="radio" name="radsex" id="fem">
+            <label for="fem">Feminino</label>
+        </p>
+        <p>
+            <input type="button" value="enviar" onclick="identificar()">
+        </p>
+        <div id="res">
+            Preencha os dados acima para ver o resultado
+        </div>
+        
+    </div>
+    <footer>
+        &copy;Curso em Vídeo
+    </footer>
+</body>
+</html>
