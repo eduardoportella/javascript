@@ -8,11 +8,31 @@ botaoAdicionar.addEventListener("click", (event) => {
     
     let pacienteTr = montaTr(paciente);
 
+    let erros = validaPaciente(paciente);
+    console.log(erros);
+
+    if (erros.length > 0){
+        exibeMensagemDeErro(erros);
+        return;
+    }
+
     let tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
     form.reset();
+
+    document.querySelector("#mensagens-erro").innerHTML = "";
 })
+
+function exibeMensagemDeErro(erros){
+    let ul = document.querySelector("#mensagens-erro");
+    ul.innerHTML = "";
+    erros.forEach(function(erro){
+        let li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+}
 
 function obtemPacientesDoFormulario(form){
     let paciente = {
@@ -32,7 +52,7 @@ function montaTr(paciente){
 
     pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
     pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
-    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(montaTd((Number(paciente.altura)).toFixed(2), "info-altura"));
     pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
     pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
 
@@ -45,4 +65,35 @@ function montaTd(dado, classe){
     td.classList.add(classe);
 
     return td;
+}
+
+function validaPaciente(paciente){
+    let erros = [];
+
+    if (!validaPeso(paciente.peso)){
+        erros.push("Peso é inválido!");
+    }
+    
+    if (!validaAltura(paciente.altura)){
+        erros.push("Altura é inválida!");
+        
+    }
+    
+    if (paciente.nome.length == 0){
+        erros.push("O nome não pode ser em branco")
+    }
+
+    if (paciente.gordura.length == 0){
+        erros.push("Gordura não pode ser em branco");
+    }
+
+    if (paciente.peso.length == 0){
+        erros.push("Peso não pode ser em branco");
+    }
+
+    if (paciente.altura.length == 0){
+        erros.push("Altura não pode ser em branco");
+    }
+
+    return erros;
 }
