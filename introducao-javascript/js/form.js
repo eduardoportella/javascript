@@ -52,7 +52,7 @@ function montaTr(paciente){
 
     pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
     pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
-    pacienteTr.appendChild(montaTd((Number(paciente.altura)).toFixed(2), "info-altura"));
+    pacienteTr.appendChild(montaTd((Number(paciente.altura)).toFixed(2), "info-altura")); //conserta o formato do numero da altura
     pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
     pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
 
