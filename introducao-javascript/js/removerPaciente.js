@@ -12,7 +12,6 @@ tabela.addEventListener("dblclick", () =>{
         // event.target.parentNode.remove(); //codigo em uma linha nao funciona aq
         paiDoAlvo.remove();
     }, 500);
-    
 });
 
 // pacientes.forEach(function(paciente) {

@@ -6,7 +6,6 @@ botaoAdicionar.addEventListener("click", (event) => {
 
     let paciente = obtemPacientesDoFormulario(form);
     
-    let pacienteTr = montaTr(paciente);
 
     let erros = validaPaciente(paciente);
     console.log(erros);
@@ -16,13 +15,18 @@ botaoAdicionar.addEventListener("click", (event) => {
         return;
     }
 
-    let tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr);
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();
 
     document.querySelector("#mensagens-erro").innerHTML = "";
 })
+
+function adicionaPacienteNaTabela(paciente){
+    let pacienteTr = montaTr(paciente);
+    let tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
+}
 
 function exibeMensagemDeErro(erros){
     let ul = document.querySelector("#mensagens-erro");
@@ -52,7 +56,8 @@ function montaTr(paciente){
 
     pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
     pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
-    pacienteTr.appendChild(montaTd((Number(paciente.altura)).toFixed(2), "info-altura")); //conserta o formato do numero da altura
+    // pacienteTr.appendChild(montaTd((Number(paciente.altura)).toFixed(2), "info-altura")); //conserta o formato do numero da altura
+    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura")); //conserta o formato do numero da altura
     pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
     pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
 
